@@ -1,64 +1,630 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Installation
 
-## About Laravel
+Create new folder
+```bash
+  mkdir project
+  cd /project
+```
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Clone this project
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+```bash
+  https://github.com/Locasee/backend-CC.git
+```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+```bash
+Cloning into 'backend-CC'...
+remote: Enumerating objects: 125, done.
+remote: Counting objects: 100% (125/125), done.
+remote: Compressing objects: 100% (93/93), done.
+Receivingremote: Total 125 (delta 14), reused 125 (delta 14), pack-reused 0
+Receiving objects: 100% (125/125), 300.93 KiB | 4.18 MiB/s, done.
+Resolving deltas: 100% (14/14), done.
+```
 
-## Learning Laravel
+Change directory
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```bash
+  cd backend-CC
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## How To Use
+Copy file .env.example to .env
 
-## Laravel Sponsors
+```bash
+  copy .env.example .env 
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Install Composer
 
-### Premium Partners
+```bash
+  composer install
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Install NPM
 
-## Contributing
+```bash
+  npm install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Setting database in .env
 
-## Code of Conduct
+```bash
+  ....
+# Database
+DB_HOST=localhost
+DB_PORT=3306
+DB_DATABASE=YOUR_DATABASE
+DB_USERNAME=YOUR_USERNAME_DATABASE
+DB_PASSWORD=YOUR_PASSWORD_DATABASE
+....
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Generate key .env
+```bash
+  php artisan migrate:key
+```
 
-## Security Vulnerabilities
+Store /storage
+```bash
+  php artisan storage:link
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Migrate Database
+```bash
+  php artisan migrate
+```
 
-## License
+Import city.sql to phpmyadmin
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Running Program
+```bash
+  php artisan serve
+```
+
+```bash
+  Starting Laravel development server: http://127.0.0.1:8000
+  [Mon Jun 13 08:50:12 2022] PHP 8.1.6 Development Server (http://127.0.0.1:8000)
+  started
+```
+
+
+
+
+
+
+
+
+## API Reference
+
+#### User Register
+
+```
+  POST http://127.0.0.1:8000/api/register
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `name` | `string` | **Required** |
+| `email` | `string` | **Required** |
+| `password` | `string` | **Required** |
+| `phone_number` | `string` | **Required** |
+| `address` | `string` | **Required** |
+
+Result :
+```http
+{
+    "data": {
+        "name": "Annas Abdurrahman",
+        "email": "admin02@admin.com",
+        "phone_number": "085602602602",
+        "address": "Jl. Mangga Besar IV K",
+        "provinsi_id": null,
+        "kabupaten_id": null,
+        "kecamatan_id": null,
+        "avatar_url": "",
+        "updated_at": "2022-06-13T02:17:51.000000Z",
+        "created_at": "2022-06-13T02:17:51.000000Z",
+        "id": 1
+    },
+    "message": "Register success."
+}
+```
+
+#### User Login
+
+```
+  POST http://127.0.0.1:8000/api/login
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `email`      | `string` | **Required** |
+| `password`   | `string` | **Required** |
+
+
+Result : 
+```http
+  {
+    "data": {
+        "id": 1,
+        "name": "Aflian M",
+        "email": "admin02@admin.com",
+        "phone_number": "085602602602",
+        "address": "Jl. Mangga Besar IV K",
+        "avatar_url": "",
+        "provinsi_id": null,
+        "kabupaten_id": null,
+        "kecamatan_id": null,
+        "email_verified_at": null,
+        "created_at": "2022-06-13T02:17:51.000000Z",
+        "updated_at": "2022-06-13T02:17:51.000000Z",
+        "provinsi": null,
+        "kabupaten": null,
+        "kecamatan": null
+    },
+    "access_token": "1|phX7hoAVlEOSnSTyHVKvVDfFaNh2JmPQHXQHFMbu",
+    "token_type": "Bearer",
+    "message": "Login success."
+}
+```
+
+#### User Update
+
+```
+  POST http://127.0.0.1:8000/api/user/{id_user}?_method=PUT
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `name`      | `string` | **Required** |
+| `email`   | `string` | **Required** |
+| `phone_number`   | `string` | **Required** |
+| `image`   | `file` | **Required** |
+
+```http
+{
+    "data": {
+        "id": 1,
+        "name": "Aflian Update",
+        "email": "admin01@admin.com",
+        "phone_number": "0856",
+        "address": "Jl. Mabes (Update)",
+        "avatar_url": "/storage/user/1/avatar.png",
+        "provinsi_id": null,
+        "kabupaten_id": null,
+        "kecamatan_id": null,
+        "email_verified_at": null,
+        "created_at": "2022-06-13T02:17:51.000000Z",
+        "updated_at": "2022-06-13T02:28:03.000000Z"
+    },
+    "message": "User updated successfully."
+}
+```
+
+
+#### POST Land
+
+```
+  POST http://127.0.0.1:8000/api/post
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `Authorization`      | `Bearear` | **Required** |
+| `title`      | `string` | **Required** |
+| `desc`      | `text` | **Required** |
+| `price`      | `integer` | **Required** |
+| `area`      | `integer` | **Required** |
+| `address`      | `string` | **Required** |
+| `latitude`      | `string` | **Required** |
+| `longitude`      | `string` | **Required** |
+| `user_id`      | `integer` | **Required** |
+| `provinsi_id`      | `integer` | **Required** |
+| `kabupaten_id`      | `integer` | **Required** |
+| `kecamatan_id`      | `integer` | **Required** |
+| `images[]`      | `file` | **Required** |
+
+Result :
+
+```http
+{
+    "data": {
+        "title": "Post Yang Benar Ini",
+        "desc": "Ini adalah percobaan",
+        "price": "9999999999999",
+        "area": "900",
+        "address": "Jl Jenderal Sudirman",
+        "latitude": "-7.567591846289804",
+        "longitude": "110.85050209864643",
+        "user_id": "1",
+        "provinsi_id": "11",
+        "kabupaten_id": "1171",
+        "kecamatan_id": "1171020",
+        "images": [
+            "/storage/post/2/images/0.jpg",
+            "/storage/post/2/images/1.png"
+        ],
+        "updated_at": "2022-06-13T02:24:44.000000Z",
+        "created_at": "2022-06-13T02:24:42.000000Z",
+        "id": 2
+    },
+    "message": "Post created successfully."
+}
+```
+
+#### GET All Post Land
+
+```
+  GET http://127.0.0.1:8000/api/post/
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `Authorization`      | `Bearear` | **Required** |
+
+
+Result :
+
+```http
+{
+    "data": [
+        {
+            "id": 2,
+            "title": "Post Yang Benar Ini",
+            "desc": "Ini adalah percobaan",
+            "price": 9999999999999,
+            "area": 900,
+            "address": "Jl Jenderal Sudirman",
+            "latitude": -7.567591846289804,
+            "longitude": 110.85050209864643,
+            "images": [
+                "/storage/post/2/images/0.jpg",
+                "/storage/post/2/images/1.png"
+            ],
+            "user_id": 1,
+            "provinsi_id": 11,
+            "kabupaten_id": 1171,
+            "kecamatan_id": 1171020,
+            "created_at": "2022-06-13T02:24:42.000000Z",
+            "updated_at": "2022-06-13T02:24:44.000000Z",
+            "deleted_at": null,
+            "user": {
+                "id": 1,
+                "name": "Aflian Update",
+                "email": "admin01@admin.com",
+                "phone_number": "0856",
+                "address": "Jl. Mabes (Update)",
+                "avatar_url": "/storage/user/1/avatar.png",
+                "provinsi_id": null,
+                "kabupaten_id": null,
+                "kecamatan_id": null,
+                "email_verified_at": null,
+                "created_at": "2022-06-13T02:17:51.000000Z",
+                "updated_at": "2022-06-13T02:28:03.000000Z"
+            },
+            "provinsi": {
+                "id": 11,
+                "title": "ACEH"
+            },
+            "kabupaten": {
+                "id": 1171,
+                "provinsi_id": 11,
+                "title": "KOTA BANDA ACEH"
+            },
+            "kecamatan": {
+                "id": 1171020,
+                "kabupaten_id": 1171,
+                "title": "BAITURRAHMAN"
+            }
+        }
+    ],
+    "message": "Posts fetched."
+}
+```
+
+#### GET Single Post Land
+
+```
+  GET http://127.0.0.1:8000/api/post/{id_posts}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `Authorization`      | `Bearear` | **Required** |
+
+
+Result :
+```http
+{
+    "data": {
+        "id": 2,
+        "title": "Post Yang Benar Ini",
+        "desc": "Ini adalah percobaan",
+        "price": 9999999999999,
+        "area": 900,
+        "address": "Jl Jenderal Sudirman",
+        "latitude": -7.567591846289804,
+        "longitude": 110.85050209864643,
+        "images": [
+            "/storage/post/2/images/0.jpg",
+            "/storage/post/2/images/1.png"
+        ],
+        "user_id": 1,
+        "provinsi_id": 11,
+        "kabupaten_id": 1171,
+        "kecamatan_id": 1171020,
+        "created_at": "2022-06-13T02:24:42.000000Z",
+        "updated_at": "2022-06-13T02:24:44.000000Z",
+        "deleted_at": null,
+        "user": {
+            "id": 1,
+            "name": "Aflian Update",
+            "email": "admin01@admin.com",
+            "phone_number": "0856",
+            "address": "Jl. Mabes (Update)",
+            "avatar_url": "/storage/user/1/avatar.png",
+            "provinsi_id": null,
+            "kabupaten_id": null,
+            "kecamatan_id": null,
+            "email_verified_at": null,
+            "created_at": "2022-06-13T02:17:51.000000Z",
+            "updated_at": "2022-06-13T02:28:03.000000Z"
+        },
+        "provinsi": {
+            "id": 11,
+            "title": "ACEH"
+        },
+        "kabupaten": {
+            "id": 1171,
+            "provinsi_id": 11,
+            "title": "KOTA BANDA ACEH"
+        },
+        "kecamatan": {
+            "id": 1171020,
+            "kabupaten_id": 1171,
+            "title": "BAITURRAHMAN"
+        }
+    },
+    "message": "Posdddts fetched."
+}
+```
+
+#### GET USER Post Land
+
+```
+  GET http://127.0.0.1:8000/api/post/user/{id_user}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `Authorization`      | `Bearear` | **Required** |
+
+```http
+{
+    "data": [
+        {
+            "id": 2,
+            "title": "Post Yang Benar Ini",
+            "desc": "Ini adalah percobaan",
+            "price": 9999999999999,
+            "area": 900,
+            "address": "Jl Jenderal Sudirman",
+            "latitude": -7.567591846289804,
+            "longitude": 110.85050209864643,
+            "images": [
+                "/storage/post/2/images/0.jpg",
+                "/storage/post/2/images/1.png"
+            ],
+            "user_id": 1,
+            "provinsi_id": 11,
+            "kabupaten_id": 1171,
+            "kecamatan_id": 1171020,
+            "created_at": "2022-06-13T02:24:42.000000Z",
+            "updated_at": "2022-06-13T02:24:44.000000Z",
+            "deleted_at": null,
+            "user": {
+                "id": 1,
+                "name": "Annas Update",
+                "email": "admin01@admin.com",
+                "phone_number": "0856",
+                "address": "Jl. Mabes (Update)",
+                "avatar_url": "/storage/user/1/avatar.png",
+                "provinsi_id": null,
+                "kabupaten_id": null,
+                "kecamatan_id": null,
+                "email_verified_at": null,
+                "created_at": "2022-06-13T02:17:51.000000Z",
+                "updated_at": "2022-06-13T02:28:03.000000Z"
+            },
+            "provinsi": {
+                "id": 11,
+                "title": "ACEH"
+            },
+            "kabupaten": {
+                "id": 1171,
+                "provinsi_id": 11,
+                "title": "KOTA BANDA ACEH"
+            },
+            "kecamatan": {
+                "id": 1171020,
+                "kabupaten_id": 1171,
+                "title": "BAITURRAHMAN"
+            }
+        }
+    ],
+    "message": "Posts fetched."
+}
+```
+
+#### Filter Search  Land
+
+```
+  GET http://127.0.0.1:8000/api/post/filter?search={text}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `Authorization`      | `Bearear` | **Required** |
+
+Result :
+```http
+{
+    "data": [
+        {
+            "id": 2,
+            "title": "Post Yang Benar Ini",
+            "desc": "Ini adalah percobaan",
+            "price": 9999999999999,
+            "area": 900,
+            "address": "Jl Jenderal Sudirman",
+            "latitude": -7.567591846289804,
+            "longitude": 110.85050209864643,
+            "images": [
+                "/storage/post/2/images/0.jpg",
+                "/storage/post/2/images/1.png"
+            ],
+            "user_id": 1,
+            "provinsi_id": 11,
+            "kabupaten_id": 1171,
+            "kecamatan_id": 1171020,
+            "created_at": "2022-06-13T02:24:42.000000Z",
+            "updated_at": "2022-06-13T02:24:44.000000Z",
+            "deleted_at": null,
+            "user": {
+                "id": 1,
+                "name": "Annas Update",
+                "email": "admin01@admin.com",
+                "phone_number": "0856",
+                "address": "Jl. Mabes (Update)",
+                "avatar_url": "/storage/user/1/avatar.png",
+                "provinsi_id": null,
+                "kabupaten_id": null,
+                "kecamatan_id": null,
+                "email_verified_at": null,
+                "created_at": "2022-06-13T02:17:51.000000Z",
+                "updated_at": "2022-06-13T02:28:03.000000Z"
+            },
+            "provinsi": {
+                "id": 11,
+                "title": "ACEH"
+            },
+            "kabupaten": {
+                "id": 1171,
+                "provinsi_id": 11,
+                "title": "KOTA BANDA ACEH"
+            },
+            "kecamatan": {
+                "id": 1171020,
+                "kabupaten_id": 1171,
+                "title": "BAITURRAHMAN"
+            }
+        }
+    ],
+    "message": "Posts fetched."
+}
+```
+
+#### UPDATE Post Land
+
+```
+  POST http://127.0.0.1:8000/api/post/{id_posts}?_method=PUT
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `Authorization`      | `Bearear` | **Required** |
+| `title`      | `string` | **Required** |
+| `desc`      | `text` | **Required** |
+| `price`      | `integer` | **Required** |
+| `area`      | `integer` | **Required** |
+| `address`      | `string` | **Required** |
+| `latitude`      | `string` | **Required** |
+| `longitude`      | `string` | **Required** |
+| `user_id`      | `integer` | **Required** |
+| `provinsi_id`      | `integer` | **Required** |
+| `kabupaten_id`      | `integer` | **Required** |
+| `kecamatan_id`      | `integer` | **Required** |
+| `images[]`      | `file` | **Required** |
+
+Result :
+```http
+{
+    "data": {
+        "id": 2,
+        "title": "Post Keempat Update",
+        "desc": "Ini adalah percobaan update post.",
+        "price": "120000000",
+        "area": "1222",
+        "address": "Jl Jenderal Sudirman",
+        "latitude": "-7.567591846289804",
+        "longitude": "110.85050209864643",
+        "images": [
+            "/storage/post/2/images/0.jpg",
+            "/storage/post/2/images/1.png",
+            "/storage/post/2/images/2.png"
+        ],
+        "user_id": "1",
+        "provinsi_id": "11",
+        "kabupaten_id": "1172",
+        "kecamatan_id": "1101010",
+        "created_at": "2022-06-13T02:24:42.000000Z",
+        "updated_at": "2022-06-13T02:39:51.000000Z",
+        "deleted_at": null
+    },
+    "message": "Post updated successfully."
+}
+```
+
+
+#### DELETE Post Land
+
+```
+  DELETE http://127.0.0.1:8000/api/post/{id_posts}
+```
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `Authorization`      | `Bearear` | **Required** |
+
+```http
+{
+    "data": {
+        "id": 3,
+        "title": "Post Yang Benar Inisssss",
+        "desc": "Ini adalah percobaan",
+        "price": 9999999999999,
+        "area": 900,
+        "address": "Jl Jenderal Sudirman",
+        "latitude": -7.567591846289804,
+        "longitude": 110.85050209864643,
+        "images": [
+            "/storage/post/3/images/0.jpg",
+            "/storage/post/3/images/1.png"
+        ],
+        "user_id": 1,
+        "provinsi_id": 11,
+        "kabupaten_id": 1171,
+        "kecamatan_id": 1171020,
+        "created_at": "2022-06-13T02:50:06.000000Z",
+        "updated_at": "2022-06-13T02:50:07.000000Z",
+        "deleted_at": null
+    },
+    "message": "Post deleted successfully."
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
