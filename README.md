@@ -75,6 +75,9 @@ Migrate Database
 ```bash
   php artisan migrate
 ```
+
+Import city.sql to phpmyadmin
+
 Running Program
 ```bash
   php artisan serve
