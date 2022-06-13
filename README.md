@@ -93,8 +93,496 @@ Running Program
 
 
 
+## API Reference
+
+#### User Register
+
+```
+  POST http://127.0.0.1:8000/api/register
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `name` | `string` | **Required** |
+| `email` | `string` | **Required** |
+| `password` | `string` | **Required** |
+| `phone_number` | `string` | **Required** |
+| `address` | `string` | **Required** |
+
+Result :
+```
+{
+    "data": {
+        "name": "Annas Abdurrahman",
+        "email": "admin02@admin.com",
+        "phone_number": "085602602602",
+        "address": "Jl. Mangga Besar IV K",
+        "provinsi_id": null,
+        "kabupaten_id": null,
+        "kecamatan_id": null,
+        "avatar_url": "",
+        "updated_at": "2022-06-13T02:17:51.000000Z",
+        "created_at": "2022-06-13T02:17:51.000000Z",
+        "id": 1
+    },
+    "message": "Register success."
+}
+```
+
+#### User Login
+
+```
+  POST http://127.0.0.1:8000/api/login
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `email`      | `string` | **Required** |
+| `password`   | `string` | **Required** |
 
 
+Result : 
+```
+  {
+    "data": {
+        "id": 1,
+        "name": "Aflian M",
+        "email": "admin02@admin.com",
+        "phone_number": "085602602602",
+        "address": "Jl. Mangga Besar IV K",
+        "avatar_url": "",
+        "provinsi_id": null,
+        "kabupaten_id": null,
+        "kecamatan_id": null,
+        "email_verified_at": null,
+        "created_at": "2022-06-13T02:17:51.000000Z",
+        "updated_at": "2022-06-13T02:17:51.000000Z",
+        "provinsi": null,
+        "kabupaten": null,
+        "kecamatan": null
+    },
+    "access_token": "1|phX7hoAVlEOSnSTyHVKvVDfFaNh2JmPQHXQHFMbu",
+    "token_type": "Bearer",
+    "message": "Login success."
+}
+```
+
+#### User Update
+
+```
+  POST http://127.0.0.1:8000/api/user/{id_user}?_method=PUT
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `name`      | `string` | **Required** |
+| `email`   | `string` | **Required** |
+| `phone_number`   | `string` | **Required** |
+| `image`   | `file` | **Required** |
+
+```
+{
+    "data": {
+        "id": 1,
+        "name": "Aflian Update",
+        "email": "admin01@admin.com",
+        "phone_number": "0856",
+        "address": "Jl. Mabes (Update)",
+        "avatar_url": "/storage/user/1/avatar.png",
+        "provinsi_id": null,
+        "kabupaten_id": null,
+        "kecamatan_id": null,
+        "email_verified_at": null,
+        "created_at": "2022-06-13T02:17:51.000000Z",
+        "updated_at": "2022-06-13T02:28:03.000000Z"
+    },
+    "message": "User updated successfully."
+}
+```
+
+
+#### POST Land
+
+```
+  POST http://127.0.0.1:8000/api/post
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `Authorization`      | `Bearear` | **Required** |
+| `title`      | `string` | **Required** |
+| `desc`      | `text` | **Required** |
+| `price`      | `integer` | **Required** |
+| `area`      | `integer` | **Required** |
+| `address`      | `string` | **Required** |
+| `latitude`      | `string` | **Required** |
+| `longitude`      | `string` | **Required** |
+| `user_id`      | `integer` | **Required** |
+| `provinsi_id`      | `integer` | **Required** |
+| `kabupaten_id`      | `integer` | **Required** |
+| `kecamatan_id`      | `integer` | **Required** |
+| `images[]`      | `file` | **Required** |
+
+Result :
+
+```
+{
+    "data": {
+        "title": "Post Yang Benar Ini",
+        "desc": "Ini adalah percobaan",
+        "price": "9999999999999",
+        "area": "900",
+        "address": "Jl Jenderal Sudirman",
+        "latitude": "-7.567591846289804",
+        "longitude": "110.85050209864643",
+        "user_id": "1",
+        "provinsi_id": "11",
+        "kabupaten_id": "1171",
+        "kecamatan_id": "1171020",
+        "images": [
+            "/storage/post/2/images/0.jpg",
+            "/storage/post/2/images/1.png"
+        ],
+        "updated_at": "2022-06-13T02:24:44.000000Z",
+        "created_at": "2022-06-13T02:24:42.000000Z",
+        "id": 2
+    },
+    "message": "Post created successfully."
+}
+```
+
+#### GET All Post Land
+
+```
+  GET http://127.0.0.1:8000/api/post/
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `Authorization`      | `Bearear` | **Required** |
+
+
+Result :
+
+```
+{
+    "data": [
+        {
+            "id": 2,
+            "title": "Post Yang Benar Ini",
+            "desc": "Ini adalah percobaan",
+            "price": 9999999999999,
+            "area": 900,
+            "address": "Jl Jenderal Sudirman",
+            "latitude": -7.567591846289804,
+            "longitude": 110.85050209864643,
+            "images": [
+                "/storage/post/2/images/0.jpg",
+                "/storage/post/2/images/1.png"
+            ],
+            "user_id": 1,
+            "provinsi_id": 11,
+            "kabupaten_id": 1171,
+            "kecamatan_id": 1171020,
+            "created_at": "2022-06-13T02:24:42.000000Z",
+            "updated_at": "2022-06-13T02:24:44.000000Z",
+            "deleted_at": null,
+            "user": {
+                "id": 1,
+                "name": "Aflian Update",
+                "email": "admin01@admin.com",
+                "phone_number": "0856",
+                "address": "Jl. Mabes (Update)",
+                "avatar_url": "/storage/user/1/avatar.png",
+                "provinsi_id": null,
+                "kabupaten_id": null,
+                "kecamatan_id": null,
+                "email_verified_at": null,
+                "created_at": "2022-06-13T02:17:51.000000Z",
+                "updated_at": "2022-06-13T02:28:03.000000Z"
+            },
+            "provinsi": {
+                "id": 11,
+                "title": "ACEH"
+            },
+            "kabupaten": {
+                "id": 1171,
+                "provinsi_id": 11,
+                "title": "KOTA BANDA ACEH"
+            },
+            "kecamatan": {
+                "id": 1171020,
+                "kabupaten_id": 1171,
+                "title": "BAITURRAHMAN"
+            }
+        }
+    ],
+    "message": "Posts fetched."
+}
+```
+
+#### GET Single Post Land
+
+```
+  GET http://127.0.0.1:8000/api/post/{id_posts}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `Authorization`      | `Bearear` | **Required** |
+
+
+Result :
+```
+{
+    "data": {
+        "id": 2,
+        "title": "Post Yang Benar Ini",
+        "desc": "Ini adalah percobaan",
+        "price": 9999999999999,
+        "area": 900,
+        "address": "Jl Jenderal Sudirman",
+        "latitude": -7.567591846289804,
+        "longitude": 110.85050209864643,
+        "images": [
+            "/storage/post/2/images/0.jpg",
+            "/storage/post/2/images/1.png"
+        ],
+        "user_id": 1,
+        "provinsi_id": 11,
+        "kabupaten_id": 1171,
+        "kecamatan_id": 1171020,
+        "created_at": "2022-06-13T02:24:42.000000Z",
+        "updated_at": "2022-06-13T02:24:44.000000Z",
+        "deleted_at": null,
+        "user": {
+            "id": 1,
+            "name": "Aflian Update",
+            "email": "admin01@admin.com",
+            "phone_number": "0856",
+            "address": "Jl. Mabes (Update)",
+            "avatar_url": "/storage/user/1/avatar.png",
+            "provinsi_id": null,
+            "kabupaten_id": null,
+            "kecamatan_id": null,
+            "email_verified_at": null,
+            "created_at": "2022-06-13T02:17:51.000000Z",
+            "updated_at": "2022-06-13T02:28:03.000000Z"
+        },
+        "provinsi": {
+            "id": 11,
+            "title": "ACEH"
+        },
+        "kabupaten": {
+            "id": 1171,
+            "provinsi_id": 11,
+            "title": "KOTA BANDA ACEH"
+        },
+        "kecamatan": {
+            "id": 1171020,
+            "kabupaten_id": 1171,
+            "title": "BAITURRAHMAN"
+        }
+    },
+    "message": "Posdddts fetched."
+}
+```
+
+#### GET USER Post Land
+
+```
+  GET http://127.0.0.1:8000/api/post/user/{id_user}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `Authorization`      | `Bearear` | **Required** |
+
+```http
+{
+    "data": [
+        {
+            "id": 2,
+            "title": "Post Yang Benar Ini",
+            "desc": "Ini adalah percobaan",
+            "price": 9999999999999,
+            "area": 900,
+            "address": "Jl Jenderal Sudirman",
+            "latitude": -7.567591846289804,
+            "longitude": 110.85050209864643,
+            "images": [
+                "/storage/post/2/images/0.jpg",
+                "/storage/post/2/images/1.png"
+            ],
+            "user_id": 1,
+            "provinsi_id": 11,
+            "kabupaten_id": 1171,
+            "kecamatan_id": 1171020,
+            "created_at": "2022-06-13T02:24:42.000000Z",
+            "updated_at": "2022-06-13T02:24:44.000000Z",
+            "deleted_at": null,
+            "user": {
+                "id": 1,
+                "name": "Annas Update",
+                "email": "admin01@admin.com",
+                "phone_number": "0856",
+                "address": "Jl. Mabes (Update)",
+                "avatar_url": "/storage/user/1/avatar.png",
+                "provinsi_id": null,
+                "kabupaten_id": null,
+                "kecamatan_id": null,
+                "email_verified_at": null,
+                "created_at": "2022-06-13T02:17:51.000000Z",
+                "updated_at": "2022-06-13T02:28:03.000000Z"
+            },
+            "provinsi": {
+                "id": 11,
+                "title": "ACEH"
+            },
+            "kabupaten": {
+                "id": 1171,
+                "provinsi_id": 11,
+                "title": "KOTA BANDA ACEH"
+            },
+            "kecamatan": {
+                "id": 1171020,
+                "kabupaten_id": 1171,
+                "title": "BAITURRAHMAN"
+            }
+        }
+    ],
+    "message": "Posts fetched."
+}
+```
+
+#### Filter Search  Land
+
+```
+  GET http://127.0.0.1:8000/api/post/filter?search={text}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `Authorization`      | `Bearear` | **Required** |
+
+Result :
+```
+{
+    "data": [
+        {
+            "id": 2,
+            "title": "Post Yang Benar Ini",
+            "desc": "Ini adalah percobaan",
+            "price": 9999999999999,
+            "area": 900,
+            "address": "Jl Jenderal Sudirman",
+            "latitude": -7.567591846289804,
+            "longitude": 110.85050209864643,
+            "images": [
+                "/storage/post/2/images/0.jpg",
+                "/storage/post/2/images/1.png"
+            ],
+            "user_id": 1,
+            "provinsi_id": 11,
+            "kabupaten_id": 1171,
+            "kecamatan_id": 1171020,
+            "created_at": "2022-06-13T02:24:42.000000Z",
+            "updated_at": "2022-06-13T02:24:44.000000Z",
+            "deleted_at": null,
+            "user": {
+                "id": 1,
+                "name": "Annas Update",
+                "email": "admin01@admin.com",
+                "phone_number": "0856",
+                "address": "Jl. Mabes (Update)",
+                "avatar_url": "/storage/user/1/avatar.png",
+                "provinsi_id": null,
+                "kabupaten_id": null,
+                "kecamatan_id": null,
+                "email_verified_at": null,
+                "created_at": "2022-06-13T02:17:51.000000Z",
+                "updated_at": "2022-06-13T02:28:03.000000Z"
+            },
+            "provinsi": {
+                "id": 11,
+                "title": "ACEH"
+            },
+            "kabupaten": {
+                "id": 1171,
+                "provinsi_id": 11,
+                "title": "KOTA BANDA ACEH"
+            },
+            "kecamatan": {
+                "id": 1171020,
+                "kabupaten_id": 1171,
+                "title": "BAITURRAHMAN"
+            }
+        }
+    ],
+    "message": "Posts fetched."
+}
+```
+
+#### UPDATE Post Land
+
+```
+  POST http://127.0.0.1:8000/api/post/{id_posts}?_method=PUT
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `Authorization`      | `Bearear` | **Required** |
+| `title`      | `string` | **Required** |
+| `desc`      | `text` | **Required** |
+| `price`      | `integer` | **Required** |
+| `area`      | `integer` | **Required** |
+| `address`      | `string` | **Required** |
+| `latitude`      | `string` | **Required** |
+| `longitude`      | `string` | **Required** |
+| `user_id`      | `integer` | **Required** |
+| `provinsi_id`      | `integer` | **Required** |
+| `kabupaten_id`      | `integer` | **Required** |
+| `kecamatan_id`      | `integer` | **Required** |
+| `images[]`      | `file` | **Required** |
+
+Result :
+```http
+{
+    "data": {
+        "id": 2,
+        "title": "Post Keempat Update",
+        "desc": "Ini adalah percobaan update post.",
+        "price": "120000000",
+        "area": "1222",
+        "address": "Jl Jenderal Sudirman",
+        "latitude": "-7.567591846289804",
+        "longitude": "110.85050209864643",
+        "images": [
+            "/storage/post/2/images/0.jpg",
+            "/storage/post/2/images/1.png",
+            "/storage/post/2/images/2.png"
+        ],
+        "user_id": "1",
+        "provinsi_id": "11",
+        "kabupaten_id": "1172",
+        "kecamatan_id": "1101010",
+        "created_at": "2022-06-13T02:24:42.000000Z",
+        "updated_at": "2022-06-13T02:39:51.000000Z",
+        "deleted_at": null
+    },
+    "message": "Post updated successfully."
+}
+```
+
+
+#### DELETE Post Land
+
+```http
+  DELETE http://127.0.0.1:8000/api/post/{id_posts}
+```
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `Authorization`      | `Bearear` | **Required** |
 
 
 
