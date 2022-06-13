@@ -110,7 +110,7 @@ Running Program
 | `address` | `string` | **Required** |
 
 Result :
-```
+```http
 {
     "data": {
         "name": "Annas Abdurrahman",
@@ -142,7 +142,7 @@ Result :
 
 
 Result : 
-```
+```http
   {
     "data": {
         "id": 1,
@@ -180,7 +180,7 @@ Result :
 | `phone_number`   | `string` | **Required** |
 | `image`   | `file` | **Required** |
 
-```
+```http
 {
     "data": {
         "id": 1,
@@ -225,7 +225,7 @@ Result :
 
 Result :
 
-```
+```http
 {
     "data": {
         "title": "Post Yang Benar Ini",
@@ -264,7 +264,7 @@ Result :
 
 Result :
 
-```
+```http
 {
     "data": [
         {
@@ -333,7 +333,7 @@ Result :
 
 
 Result :
-```
+```http
 {
     "data": {
         "id": 2,
@@ -466,7 +466,7 @@ Result :
 | `Authorization`      | `Bearear` | **Required** |
 
 Result :
-```
+```http
 {
     "data": [
         {
@@ -577,12 +577,40 @@ Result :
 
 #### DELETE Post Land
 
-```http
+```
   DELETE http://127.0.0.1:8000/api/post/{id_posts}
 ```
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `Authorization`      | `Bearear` | **Required** |
+
+```http
+{
+    "data": {
+        "id": 3,
+        "title": "Post Yang Benar Inisssss",
+        "desc": "Ini adalah percobaan",
+        "price": 9999999999999,
+        "area": 900,
+        "address": "Jl Jenderal Sudirman",
+        "latitude": -7.567591846289804,
+        "longitude": 110.85050209864643,
+        "images": [
+            "/storage/post/3/images/0.jpg",
+            "/storage/post/3/images/1.png"
+        ],
+        "user_id": 1,
+        "provinsi_id": 11,
+        "kabupaten_id": 1171,
+        "kecamatan_id": 1171020,
+        "created_at": "2022-06-13T02:50:06.000000Z",
+        "updated_at": "2022-06-13T02:50:07.000000Z",
+        "deleted_at": null
+    },
+    "message": "Post deleted successfully."
+}
+```
+
 
 
 
